@@ -1,0 +1,73 @@
+{
+    "signin": {
+        "title": "Inicia Sesión",
+        "user": "Usuario",
+        "password": "Contraseña",
+        "sign-in": "Iniciar Sesión",
+        "sign-up": "Registrarse",
+        "reg": "Roles"
+    },
+    "navbar": {
+        "panel": "Panel",
+        "board": "Tablero",
+        "users": "Usuarios",
+        "allowlist": "Allowlist",
+        "permissions": "Permisos",
+        "rol": "Roles",
+        "world": "Mundo",
+        "backups": "Respaldos",
+        "logs": "Registros",
+        "properties": "Propiedades",
+        "language": {
+            "en": "Inglés",
+            "es": "Español"
+        },
+        "new": "Nuevo",
+        "light": "Claro",
+        "light-icon": "<i class=\"bi bi-brightness-high-fill\"><\/i>",
+        "dark": "Oscuro",
+        "dark-icon": "<i class=\"bi bi-moon-stars-fill\"><\/i>",
+        "auto": "Auto",
+        "auto-icon": "<i class=\"bi bi-circle-half\"><\/i>",
+        "sing-out": "Salir"
+    },
+    "navuser": {
+        "nav-user": "Usuario",
+        "nav-user-icon": "<i class='fas fa-user-tag'></i>",
+        "nav-gamertag": "Gamertag",
+        "nav-gamertag-icon": "<i class='fas fa-gamepad'></i>",
+        "nav-country": "País",
+        "nav-country-icon": "<i class='fas fa-atlas'></i>",
+        "nav-rol": "Rol",
+        "nav-rol-icon": "<i class='fas fa-user-edit'></i>",
+        "nav-created": "Creado",
+        "nav-created-icon": "<i class='fas fa-calendar-alt'></i>",
+        "nav-btn-edit": "Editar",
+        "nav-btn-edit-icon": "<i class='fas fa-pencil-alt'></i>"
+    },
+    "breadcrumb": {
+        "home-bread": "Inicio",
+        "users-bread": "Usuarios",
+        "allowlist-bread": "Allowlist",
+        "permissions-bread": "Permisos",
+        "rol-bread": "Roles",
+        "world-bread": "Mundo",
+        "backups-bread": "Respaldos",
+        "logs-bread": "Registros",
+        "properties-bread": "Propiedades"
+    },
+    "board": {
+        "panel-title": "Panel Principal",
+        "in-srv": "Ingreso al servidor",
+        "in-port": "Puerto",
+        "vesion-MC": "Version Minecraft",
+        "consulted-in": "Consultado en",
+        "server": "Servidor",
+        "srv-ctl": "Control del Servidor",
+        "srv-desc": "Aquí puede detener, iniciar y/o reiniciar el servidor, se recomienda reiniciar cada vez que realicen cambios en Allowlist, Permisos y/o Propiedades.",
+        "srv-stop": "Detener",
+        "srv-start": "Iniciar",
+        "srv-restart": "Reiniciar",
+        "see-rules": "Ver"
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "signin": {
+        "title": "Please sign in",
+        "user": "User",
+        "password": "Password",
+        "sign-in": "Sing in",
+        "sign-up": "Sing up",
+        "reg": "Roles"
+    },
+    "navbar": {
+        "panel": "Panel",
+        "board": "Board",
+        "users": "Users",
+        "allowlist": "Allowlist",
+        "permissions": "Permissions",
+        "rol": "Roles",
+        "world": "World",
+        "backups": "Backups",
+        "logs": "Logs",
+        "properties": "Properties",
+        "language": {
+            "en": "English",
+            "es": "Spanish"
+        },
+        "new": "New",
+        "light": "Light",
+        "light-icon": "<i class=\"bi bi-brightness-high-fill\"><\/i>",
+        "dark": "Dark",
+        "dark-icon": "<i class=\"bi bi-moon-stars-fill\"><\/i>",
+        "auto": "Auto",
+        "auto-icon": "<i class=\"bi bi-circle-half\"><\/i>",
+        "sing-out": "Sing Out"
+    },
+    "navuser": {
+        "nav-user": "User",
+        "nav-user-icon": "<i class='fas fa-user-tag'></i>",
+        "nav-gamertag": "Gamertag",
+        "nav-gamertag-icon": "<i class='fas fa-gamepad'></i>",
+        "nav-country": "Country",
+        "nav-country-icon": "<i class='fas fa-atlas'></i>",
+        "nav-rol": "Rol",
+        "nav-rol-icon": "<i class='fas fa-user-edit'></i>",
+        "nav-created": "Created",
+        "nav-created-icon": "<i class='fas fa-calendar-alt'></i>",
+        "nav-btn-edit": "Edit",
+        "nav-btn-edit-icon": "<i class='fas fa-pencil-alt'></i>"
+    },
+    "breadcrumb": {
+        "home-bread": "Home",
+        "users-bread": "Users",
+        "allowlist-bread": "Allowlist",
+        "permissions-bread": "Permissions",
+        "rol-bread": "Roles",
+        "world-bread": "World",
+        "backups-bread": "Backups",
+        "logs-bread": "Logs",
+        "properties-bread": "Properties"
+    },
+    "board": {
+        "panel-title": "Main Panel",
+        "in-srv": "Login to the server",
+        "in-port": "Port",
+        "vesion-MC": "Minecraft version",
+        "consulted-in": "Consulted in",
+        "server": "Server",
+        "srv-ctl": "Server Control",
+        "srv-desc": "Here you can stop, start and/or restart the server, it is recommended to restart every time you make changes to Allowlist, Permissions and/or Properties.",
+        "srv-stop": "Stop",
+        "srv-start": "Start",
+        "srv-restart": "Restart",
+        "see-rules": "See"
+    }
+}

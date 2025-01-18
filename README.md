@@ -24,7 +24,7 @@ Antes de iniciar hay que aclarar que el Servidor dedicado de Minecraft Bedrock E
 ## Requisitos Mínimos:
 * Una computadora con un procesador x86_64 bit.
 * 2 GB de RAM o más
-* Ubuntu Server 18.04.2
+* Ubuntu Server 18.04.2 o superior.
 
 ## Funciones habilitadas del Panel de Administración Web:
 * Gestión y/o permisos de Usuarios inscritos: `Administrador`, `Editor` y `Usuario`.
@@ -57,9 +57,9 @@ Instala el repositorio de [James A. Chambers](https://github.com/TheRemote/Minec
 En desarrollo
 ```
 
+
 Ver Instalación completa en: [Instalar Panel Web](https://gorobeta.blogspot.com/2021/04/instalar-minecraft-bedrock-edition-panel-admin.html)
 
-Ver Demo OnLine (Solo el panel de Administración Web) en [Probar Panel Web](https://dipanel.herokuapp.com)
 #
 #
 #
