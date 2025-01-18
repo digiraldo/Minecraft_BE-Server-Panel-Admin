@@ -64,6 +64,8 @@ Ver Instalación completa en: [Instalar Panel Web](https://gorobeta.blogspot.com
 
 Ver Demo OnLine (Solo el panel de Administración Web) en [Probar Panel Web](https://digiraldo.github.io/Minecraft_BE-Server-Panel-Admin/)
 
+[![Static Badge](https://img.shields.io/badge/Ver-Demo-blue)](https://digiraldo.github.io/Minecraft_BE-Server-Panel-Admin/)
+
 #
 #
 #
