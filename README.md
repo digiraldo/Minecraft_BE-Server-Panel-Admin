@@ -2,6 +2,8 @@
 Instalación de Servidor dedicado Minecraft Bedrock Edition Server con Panel de Administración Web
 # Minecraft Bedrock Edition Server con Panel de Administración Web v2.5
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## El Panel de Administración esta en Desarrollo.
 
 ## Instalar Servidor Dedicado de Minecraft Bedrock Edition
@@ -60,7 +62,7 @@ En desarrollo
 
 Ver Instalación completa en: [Instalar Panel Web](https://gorobeta.blogspot.com/2021/04/instalar-minecraft-bedrock-edition-panel-admin.html)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 #
 #
