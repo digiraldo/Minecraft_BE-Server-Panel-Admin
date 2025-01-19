@@ -5,7 +5,20 @@
         "password": "Contraseña",
         "sign-in": "Iniciar Sesión",
         "sign-up": "Registrarse",
-        "reg": "Roles"
+        "remember": "Recordar"
+    },
+    "signup": {
+        "title": "Registro",
+        "user": "Usuario",
+        "password": "Contraseña",
+        "gamertag": "Gamertag",
+        "sign-up": "Registrarse",
+        "remember": "Recordar",
+        "signup-icon": "<i class=\"fa-solid fa-pen-to-square\"></i>"
+    },
+    "language": {
+        "en": "Inglés",
+        "es": "Español"
     },
     "navbar": {
         "panel": "Panel",
@@ -18,10 +31,6 @@
         "backups": "Respaldos",
         "logs": "Registros",
         "properties": "Propiedades",
-        "language": {
-            "en": "Inglés",
-            "es": "Español"
-        },
         "new": "Nuevo",
         "light": "Claro",
         "light-icon": "<i class=\"bi bi-brightness-high-fill\"><\/i>",

@@ -5,7 +5,20 @@
         "password": "Password",
         "sign-in": "Sing in",
         "sign-up": "Sing up",
-        "reg": "Roles"
+        "remember": "Remember me"
+    },
+    "signup": {
+        "title": "Please sign up",
+        "user": "User",
+        "password": "Password",
+        "gamertag": "Gamertag",
+        "sign-up": "Sing up",
+        "remember": "Remember me",
+        "signup-icon": "<i class=\"fa-solid fa-pen-to-square\"></i>  Sing up"
+    },
+    "language": {
+        "en": "English",
+        "es": "Spanish"
     },
     "navbar": {
         "panel": "Panel",
@@ -18,10 +31,6 @@
         "backups": "Backups",
         "logs": "Logs",
         "properties": "Properties",
-        "language": {
-            "en": "English",
-            "es": "Spanish"
-        },
         "new": "New",
         "light": "Light",
         "light-icon": "<i class=\"bi bi-brightness-high-fill\"><\/i>",
