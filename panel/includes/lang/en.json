@@ -1,7 +1,7 @@
 {
     "signin": {
         "title": "Please sign in",
-        "user": "User",
+        "user": "Username",
         "password": "Password",
         "sign-in": "Sing in",
         "sign-up": "Sing up",
@@ -9,10 +9,13 @@
     },
     "signup": {
         "title": "Please sign up",
-        "user": "User",
+        "text-alert": "The user must be a name or word, not use email, Microsoft or Xbox live accounts or passwords.",
+        "user": "Username",
         "password": "Password",
         "gamertag": "Gamertag",
-        "sign-up": "Sing up",
+        "img-sel": "Select Image",
+        "img-open": "Open this select menu",
+        "sign-up": "Register",
         "remember": "Remember me",
         "signup-icon": "<i class=\"fa-solid fa-pen-to-square\"></i>  Sing up"
     },

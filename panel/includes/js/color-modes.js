@@ -4,6 +4,11 @@
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
  */
 
+
+// OTRA FORMA DE HACER EL MODO OSCURO:
+// https://youtu.be/2_lKFUBSyto?si=TdKbGICv3QFLJ4mr&t=1533
+// https://github.com/carpicoder/curso-js-2022/blob/main/Clase%2010%20-%20Storage%20y%20JSON/js/main.js
+
 (() => {
   'use strict'
 
@@ -13,11 +18,16 @@
   const getPreferredTheme = () => {
     const storedTheme = getStoredTheme()
     if (storedTheme) {
+      console.log(storedTheme);
       return storedTheme
     }
 
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    
   }
+
+  // const temaBuscar = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // console.log(temaBuscar);
 
   const setTheme = theme => {
     if (theme === 'auto') {

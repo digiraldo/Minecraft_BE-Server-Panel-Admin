@@ -27,9 +27,12 @@ langButtons.forEach((button) => {
 
 let languageNavbar = navigator.languages;
 let languages = languageNavbar[1];
+localStorage.setItem("language", languages)
+let languageActual = localStorage.getItem("language");
+console.log(languageActual);
 
-console.log(languageNavbar);
-console.log(languages);
+// console.log(languageNavbar);
+// console.log(languages);
 
 
 document.addEventListener('DOMContentLoaded',()=>{

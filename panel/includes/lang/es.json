@@ -9,9 +9,12 @@
     },
     "signup": {
         "title": "Registro",
+        "text-alert": "El usuario debe ser un nombre o palabra, no usar cuentas ni contraseñas de correos, microsoft o Xbox live.",
         "user": "Usuario",
         "password": "Contraseña",
         "gamertag": "Gamertag",
+        "img-sel": "Seleccione Imágen",
+        "img-open": "Abrir menú de selección",
         "sign-up": "Registrarse",
         "remember": "Recordar",
         "signup-icon": "<i class=\"fa-solid fa-pen-to-square\"></i>"
