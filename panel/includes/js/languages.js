@@ -1,4 +1,3 @@
-
 let LocalStorageLanguage = localStorage.getItem("language");
 const flagsElements = document.getElementById('flags');
 const idiomaActualBtn = document.getElementById('idioma-btn');
@@ -53,10 +52,8 @@ switch (LocalStorageLanguage) {
 
 langButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        const abbreviaLanguage = button.dataset.language;
-        changeLanguage(abbreviaLanguage);
-        localStorage.setItem("language", abbreviaLanguage)
-
-        console.log(abbreviaLanguage);
+        const abbreviationLanguage = button.dataset.language;
+        changeLanguage(abbreviationLanguage);
+        localStorage.setItem("language", abbreviationLanguage)
     });
 });

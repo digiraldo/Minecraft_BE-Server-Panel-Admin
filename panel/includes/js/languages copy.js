@@ -73,11 +73,11 @@ switch (LocalStorageLanguage) {
 
 langButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        const abbreviaLanguage = button.dataset.language;
-        changeLanguage(abbreviaLanguage);
-        localStorage.setItem("language", abbreviaLanguage)
+        const abbreviationLanguage = button.dataset.language;
+        changeLanguage(abbreviationLanguage);
+        localStorage.setItem("language", abbreviationLanguage)
 
-        console.log(abbreviaLanguage);
+        console.log(abbreviationLanguage);
     });
 });
 
@@ -163,8 +163,8 @@ flagsElements.addEventListener('click', (e) => {
 
 
 /* console.log('Consola de Registro')
-console.info('Consola de Informacion')
-console.debug('Console de Depuracion')
+console.info('Consola de Información')
+console.debug('Console de Depuración')
 console.warn('Consola de Aviso')
 console.error('Consola de Error') */
 
