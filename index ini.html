@@ -83,38 +83,17 @@ dentro del json -->
   t = top, b = bottom, s = start, e = end, x = left and right, y = top and bottom
 -->
 
-<!-- span[data-section="" data-value=""] -->
+
 
 <!-- Example single danger button -->
-<div class="btn-group position-fixed bottom-0 start-4 p-3 bd-mode-toggle"> <!-- Inicio codigo boton Idiomas -->
-  <button id="idioma-btn" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    <img src="panel/includes/icon/language.svg" class="img-fluid img-thumbnail me-2" alt="flagUs" width="30em">
+<div class="btn-group position-fixed bottom-0 start-4 p-3 "> <!-- Inicio codigo boton Idiomas -->
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fa-solid fa-language"></i>
   </button>
-  <ul class="dropdown-menu" id="flags">
-    <li>
-      <a class="dropdown-item" aria-current="true" href="#" id="en">
-          <div class="flags_item" data-language="en">
-            <img src="panel/includes/icon/en.svg" class="img-fluid img-thumbnail me-2" alt="flagUs" width="30em">
-            <span data-section="language" data-value="en">English</span>
-          </div>
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" aria-current="true" href="#" id="es">
-          <div class="flags_item" data-language="es">
-            <img src="panel/includes/icon/es.svg" class="img-fluid img-thumbnail me-2" alt="flagUs" width="30em">
-            <span data-section="language" data-value="es">Spanish</span>
-          </div>
-      </a>
-    </li>
-<!--     <li>
-      <a class="dropdown-item" href="#" class="flags">
-          <div class="flags_item" data-language="auto">
-            <i class="fa-solid fa-language img-thumbnail me-2"></i>
-            <span data-section="navbar" data-value="auto">Auto</span>
-          </div>
-      </a>
-    </li> -->
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#"><img src="panel/includes/icon/en.svg" class="img-fluid img-thumbnail me-2" alt="flagUs" width="30em">English</a></li>
+    <li><a class="dropdown-item" href="#"><img src="panel/includes/icon/es.svg" class="img-fluid img-thumbnail me-2" alt="flagUs" width="30em">Spanish</a></li>
+    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-language img-thumbnail me-2"></i>Auto</a></li>
   </ul>
 </div> <!-- Final codigo boton Idiomas -->
 
@@ -134,7 +113,7 @@ dentro del json -->
           <svg class="bi me-2 opacity-50" width="1em" height="1em">
             <use href="#sun-fill"></use>
           </svg>
-          <span data-section="navbar" data-value="light">Light</span>
+          Light
           <svg class="bi ms-auto d-none" width="1em" height="1em">
             <use href="#check2"></use>
           </svg>
@@ -146,7 +125,7 @@ dentro del json -->
           <svg class="bi me-2 opacity-50" width="1em" height="1em">
             <use href="#moon-stars-fill"></use>
           </svg>
-          <span data-section="navbar" data-value="dark">Dark</span>
+          Dark
           <svg class="bi ms-auto d-none" width="1em" height="1em">
             <use href="#check2"></use>
           </svg>
@@ -158,7 +137,7 @@ dentro del json -->
           <svg class="bi me-2 opacity-50" width="1em" height="1em">
             <use href="#circle-half"></use>
           </svg>
-          <span data-section="navbar" data-value="auto">Auto</span>
+          Auto
           <svg class="bi ms-auto d-none" width="1em" height="1em">
             <use href="#check2"></use>
           </svg>
@@ -167,18 +146,17 @@ dentro del json -->
     </ul>
   </div> <!-- Final codigo boton tema -->
 
-  <!-- span[data-section="" data-value=""] -->
 
   <main class="form-signin w-100 m-auto p-0">
     <form>
       <img class="mb-4" src="panel/includes/img/admin_minecraft.png" alt="" height="80">
-      <h1 class="h3 mb-3 fw-normal"><span data-section="signin" data-value="title">Please sign in</span></h1>
+      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
       <div class="input-group mb-3">
         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
         <div class="form-floating">
           <input type="text" class="form-control" id="signin-usr" placeholder="">
-          <label for="signin-usr"><span data-section="signin" data-value="user">Username</span></label>
+          <label for="signin-usr">Username</label>
         </div>
       </div>
       <div class="input-group mb-3">
@@ -186,17 +164,17 @@ dentro del json -->
         <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
         <div class="form-floating">
           <input type="password" name="password" autocomplete="on" class="form-control mb-0" id="signin-pass" placeholder="Password">
-          <label for="signin-pass"><span data-section="signin" data-value="password">Password</span></label>
+          <label for="signin-pass">Password</label>
         </div>
       </div>
 
       <div class="form-check text-start my-3">
         <input class="form-check-input" type="checkbox" value="remember-me" id="signin-check">
         <label class="form-check-label" for="signin-check">
-          <span data-section="signin" data-value="remember">Remember me</span>
+          Remember me
         </label>
       </div>
-      <button class="btn btn-primary w-100 py-2" type="submit"><span data-section="signin" data-value="sign-in">Sign in</span></button>
+      <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
     </form>
 
     <p></p>
@@ -204,27 +182,27 @@ dentro del json -->
     <div class="dropdown">
       <button type="button" class="btn btn-success dropdown-toggle w-100 py-2" data-bs-toggle="dropdown"
         aria-expanded="false" data-bs-auto-close="outside">
-        <span data-section="signin" data-value="sign-up">Sing up</span>
+        Sing up
       </button>
       <form class="dropdown-menu p-0 w-100 m-auto">
         <div class="card">
           <h5 class="card-header"><img src="panel/includes/icon/games-minecraft.svg" alt="Logo" width="40em"
-              class="d-inline-block align-text-top img-thumbnail"> <span data-section="signup" data-value="title">Please sign up</span></h5>
+              class="d-inline-block align-text-top img-thumbnail"> Please sign up</h5>
           <div class="card-body">
-            <p class="card-text"><span data-section="signup" data-value="text-alert">The user must be a name or word, not use email, Microsoft or Xbox live accounts or passwords.</span></p>
+            <p class="card-text">The user must be a name or word, not use email, Microsoft or Xbox live accounts or passwords.</p>
 
             <div class="input-group mb-3">
               <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
               <div class="form-floating">
                 <input type="text" class="form-control" id="signup-usr" placeholder="">
-                <label for="signup-usr"><span data-section="signup" data-value="user">Username</span></label>
+                <label for="signup-usr">Username</label>
               </div>
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
               <div class="form-floating">
                 <input type="password" name="password" autocomplete="on" class="form-control mb-0" id="signup-pass" placeholder="Password">
-                <label for="signup-pass"><span data-section="signup" data-value="password">Password</span></label>
+                <label for="signup-pass">Password</label>
               </div>
             </div>
             <!-- <i class="fa-solid fa-user-tag"></i> panel/includes/icon/minecraft_icon.svg -->
@@ -236,7 +214,7 @@ dentro del json -->
               </span>
               <div class="form-floating">
                 <input type="text" class="form-control" id="signup-gtag" placeholder="Jane Doe">
-                <label for="signup-gtag"><span data-section="signup" data-value="gamertag">Gamertag</span></label>
+                <label for="signup-gtag">Gamertag</label>
               </div>
             </div>
 
@@ -246,17 +224,17 @@ dentro del json -->
 
                 <div class="form-floating">
                   <select class="form-select" id="signup-sel-img">
-                    <option selected data-section="signup" data-value="img-open">Open this select menu</option>
+                    <option selected>Open this select menu</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
-                  <label for="signup-sel-img"><span data-section="signup" data-value="img-sel">Select Image</span></label>
+                  <label for="signup-sel-img">Select Image</label>
                 </div>
               </div>
             </div>
             <div class="col-auto">
-              <button type="submit" class="btn btn-primary"><span data-section="signup" data-value="sign-up">Register</span></button>
+              <button type="submit" class="btn btn-primary">Register</button>
             </div>
           </div>
         </div>
