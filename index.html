@@ -236,22 +236,137 @@ t = top, b = bottom, s = start, e = end, x = left and right, y = top and bottom
               </div>
             </div>
 
-            <div class="input-group mb-3">
-              <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
-              <div class="col-md">
 
-                <div class="form-floating">
-                  <select class="form-select" id="signup-sel-img">
-                    <option selected data-section="signup" data-value="img-open">Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                  <label for="signup-sel-img"><span data-section="signup" data-value="img-sel">Select
-                      Image</span></label>
-                </div>
+            <div class="dropdown input-group mb-3">
+              <span class="input-group-text">
+                <label id="user-default-img" for=""><img src="panel/includes/img/perfil/user.png" alt="userDefaultIcon" class="img-fluid" width="20em" /></label>
+              </span>
+              <div class="form-floating btn-group z-3 d-grid">
+                <button class="btn dropdown-toggle  d-flex align-content-center flex-wrap px0 border bg-body rounded-0 rounded-end-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="me-auto p-0 text-start">
+                    <span data-section="signup" data-value="img-open">Open this select menu</span>
+                    <br/>
+                    <label for="iconUser"><span class="form-text" data-section="signup" data-value="img-sel">Select Image</span></label>
+                  </div>
+                </button>
+              <ul class="dropdown-menu" id="iconUser">
+    
+                <li>
+                  <a href="#" class="dropdown-item" id="user">
+                    <div class="icon_item" data-parent="user"><img src="panel/includes/img/perfil/user.png" alt="userIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="user">User</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="ajolote">
+                    <div class="icon_item" data-parent="ajolote"><img src="panel/includes/img/perfil/ajolote.png" alt="ajoloteIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="ajolote">Ajolote</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="cave-spider">
+                    <div class="icon_item" data-parent="cave-spider"><img src="panel/includes/img/perfil/cave-spider.png" alt="cave-spiderIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="cave-spider">Cave Spider</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="cow">
+                    <div class="icon_item" data-parent="cow"><img src="panel/includes/img/perfil/cow.png" alt="cowIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="cow">Cow</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="creeper">
+                    <div class="icon_item" data-parent="creeper"><img src="panel/includes/img/perfil/creeper.png" alt="creeperIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="creeper">Creeper</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="enderman">
+                    <div class="icon_item" data-parent="enderman"><img src="panel/includes/img/perfil/enderman.png" alt="endermanIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="enderman">Enderman</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="farmer">
+                    <div class="icon_item" data-parent="farmer"><img src="panel/includes/img/perfil/farmer.png" alt="farmerIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="farmer">Farmer</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="pig">
+                    <div class="icon_item" data-parent="pig"><img src="panel/includes/img/perfil/pig.png" alt="pigIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="pig">Pig</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="sheep">
+                    <div class="icon_item" data-parent="sheep"><img src="panel/includes/img/perfil/sheep.png" alt="sheepIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="sheep">Sheep</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="skeleton">
+                    <div class="icon_item" data-parent="skeleton"><img src="panel/includes/img/perfil/skeleton.png" alt="skeletonIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="skeleton">Skeleton</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="spider">
+                    <div class="icon_item" data-parent="spider"><img src="panel/includes/img/perfil/spider.png" alt="spiderIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="spider">Spider</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="wolf">
+                    <div class="icon_item" data-parent="wolf"><img src="panel/includes/img/perfil/wolf.png" alt="wolfIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="wolf">Wolf</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="zombie">
+                    <div class="icon_item" data-parent="zombie"><img src="panel/includes/img/perfil/zombie.png" alt="zombieIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="zombie">Zombie</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="alex">
+                    <div class="icon_item" data-parent="alex"><img src="panel/includes/img/perfil/alex.png" alt="alexIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="alex">Alex</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="ari">
+                    <div class="icon_item" data-parent="ari"><img src="panel/includes/img/perfil/ari.png" alt="ariIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="ari">Ari</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="efe">
+                    <div class="icon_item" data-parent="efe"><img src="panel/includes/img/perfil/efe.png" alt="efeIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="efe">Efe</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="kai">
+                    <div class="icon_item" data-parent="kai"><img src="panel/includes/img/perfil/kai.png" alt="kaiIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="kai">Kai</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="makena">
+                    <div class="icon_item" data-parent="makena"><img src="panel/includes/img/perfil/makena.png" alt="makenaIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="makena">Makena</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="noor">
+                    <div class="icon_item" data-parent="noor"><img src="panel/includes/img/perfil/noor.png" alt="noorIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="noor">Noor</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="steve">
+                    <div class="icon_item" data-parent="steve"><img src="panel/includes/img/perfil/steve.png" alt="steveIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="steve">Steve</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="sunny">
+                    <div class="icon_item" data-parent="sunny"><img src="panel/includes/img/perfil/sunny.png" alt="sunnyIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="sunny">Sunny</span></div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item" id="zuri">
+                    <div class="icon_item" data-parent="zuri"><img src="panel/includes/img/perfil/zuri.png" alt="zuriIcon" class="img-fluid me-3" width="30em"><span data-section="iconuser" data-value="zuri">Zuri</span></div>
+                  </a>
+                </li>
+    
+              </ul>
               </div>
-            </div>
+          </div>
+    
+
             <div class="d-grid col-auto mx-5">
               <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square me-2"></i><span data-section="signup"
                   data-value="sign-up">Register</span></button>
@@ -267,6 +382,7 @@ t = top, b = bottom, s = start, e = end, x = left and right, y = top and bottom
 
   <script src="panel/includes/js/color-modes.js"></script>
   <script src="panel/includes/js/languages.js"></script>
+  <script src="panel/includes/js/icon-user.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>

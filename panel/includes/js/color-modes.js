@@ -18,7 +18,7 @@
   const getPreferredTheme = () => {
     const storedTheme = getStoredTheme()
     if (storedTheme) {
-      console.log(storedTheme);
+      //console.log(storedTheme);
       return storedTheme
     }
 

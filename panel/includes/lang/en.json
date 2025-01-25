@@ -19,6 +19,30 @@
         "remember": "Remember me",
         "signup-icon": "<i class=\"fa-solid fa-pen-to-square\"></i>  Sing up"
     },
+    "iconuser": {
+        "user": "user",
+        "ajolote": "Ajolote",
+        "cave-spider": "Cave Spider",
+        "cow": "Cow",
+        "creeper": "Creeper",
+        "enderman": "Enderman",
+        "farmer": "Farmer",
+        "pig": "Pig",
+        "sheep": "Sheep",
+        "skeleton": "Skeleton",
+        "spider": "Spider",
+        "wolf": "Wolf",
+        "zombie": "Zombie",
+        "alex": "Alex",
+        "ari": "Ari",
+        "efe": "Efe",
+        "kai": "Kai",
+        "makena": "Makena",
+        "noor": "Noor",
+        "steve": "Steve",
+        "sunny": "Sunny",
+        "zuri": "Zuri"
+    },
     "language": {
         "en": "English",
         "es": "Spanish"

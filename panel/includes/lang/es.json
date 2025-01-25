@@ -19,6 +19,30 @@
         "remember": "Recordar",
         "signup-icon": "<i class=\"fa-solid fa-pen-to-square\"></i>"
     },
+    "iconuser": {
+        "user": "Usuario",
+        "ajolote": "Ajolote",
+        "cave-spider": "Araña Cueva",
+        "cow": "Vaca",
+        "creeper": "Creeper",
+        "enderman": "Enderman",
+        "farmer": "Granjero",
+        "pig": "Cerdo",
+        "sheep": "Oveja",
+        "skeleton": "Esqueleto",
+        "spider": "Araña",
+        "wolf": "Lobo",
+        "zombie": "Zombie",
+        "alex": "Alex",
+        "ari": "Ari",
+        "efe": "Efe",
+        "kai": "Kai",
+        "makena": "Makena",
+        "noor": "Noor",
+        "steve": "Steve",
+        "sunny": "Sunny",
+        "zuri": "Zuri"
+    },
     "language": {
         "en": "Inglés",
         "es": "Español"
