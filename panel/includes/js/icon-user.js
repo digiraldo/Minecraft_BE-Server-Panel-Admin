@@ -1,18 +1,18 @@
-const usersElements = document.getElementById("iconUser");
+let usersElements = document.getElementById("iconUser");
 //console.log(usersElements);
-const userActualBtn = document.getElementById("user-default-img");
+let userActualBtn = document.getElementById("user-default-img");
 //console.log(userActualBtn);
 
-const userButton = document.querySelectorAll("[data-parent]");
+let userButton = document.querySelectorAll("[data-parent]");
 //console.log(userButton);
-const dataToChange = document.querySelectorAll("[data-section]");
+let dataToChange = document.querySelectorAll("[data-section]");
 //console.log(dataToChange);
 
-const changeIconUser = async iconUser => {
+let changeIconUser = async iconUser => {
     userActualBtn.getElementsByTagName('img')[0].src = `panel/includes/img/perfil/${iconUser}.png`
 };
 
-const menuUsers = document.querySelectorAll('.dropdown-item');
+let menuUsers = document.querySelectorAll('.dropdown-item');
 menuUsers.forEach((item) => {
     item.addEventListener('click', () => {
         document.querySelector(".active").classList.remove("active");
@@ -22,7 +22,7 @@ menuUsers.forEach((item) => {
 
 userButton.forEach((button) => {
     button.addEventListener("click", () => {
-        const abbreviationiconUser = button.dataset.parent;
+        let abbreviationiconUser = button.dataset.parent;
         //console.log(abbreviationiconUser);
         changeIconUser(abbreviationiconUser);
     });

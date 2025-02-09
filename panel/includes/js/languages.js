@@ -1,29 +1,29 @@
 let LocalStorageLanguage = localStorage.getItem("language");
-const flagsElements = document.getElementById('flags');
-const idiomaActualBtn = document.getElementById('idioma-btn');
+let flagsElements = document.getElementById('flags');
+let idiomaActualBtn = document.getElementById('idioma-btn');
 
 //  ==================== CAMBIO DE IDIOMA V2 ====================
-const langButtons = document.querySelectorAll("[data-language]");
-const textsToChange = document.querySelectorAll("[data-section]");
+let langButtons = document.querySelectorAll("[data-language]");
+let textsToChange = document.querySelectorAll("[data-section]");
 
-const changeLanguage = async language => {
+let changeLanguage = async language => {
     idiomaActualBtn.getElementsByTagName('img')[0].src = `panel/includes/icon/${language}.svg`;
     fetch(`panel/includes/lang/${language}.json`)
     .then(res => res.json())
     .then(data => {
         textsToChange.forEach((el) => {
-            const section = el.dataset.section;
-            const value = el.dataset.value;
+            let section = el.dataset.section;
+            let value = el.dataset.value;
             el.innerHTML = data[section][value];
         });
     });
 };
 
-const changeUndefined = async languageUndefined => {
+let changeUndefined = async languageUndefined => {
     idiomaActualBtn.getElementsByTagName('img')[0].src = `panel/includes/icon/${languageUndefined}.svg`;
 };
 
-const menuItems = document.querySelectorAll('.dropdown-item');
+let menuItems = document.querySelectorAll('.dropdown-item');
 menuItems.forEach((item) => {
     item.addEventListener('click', () => {
         document.querySelector(".active").classList.remove("active");
@@ -39,20 +39,20 @@ switch (LocalStorageLanguage) {
         changeLanguage(languages);
         break;
     case "undefined":
-        const undefined = "language";
+        let undefined = "language";
         changeUndefined(undefined);
         localStorage.removeItem("language");
         break;
     default:
         changeLanguage(LocalStorageLanguage);
-        const btnToActive = document.querySelector(`[id="${LocalStorageLanguage}"]`);
+        let btnToActive = document.querySelector(`[id="${LocalStorageLanguage}"]`);
         btnToActive.classList.add('active');
         break;
 }
 
 langButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        const abbreviationLanguage = button.dataset.language;
+        let abbreviationLanguage = button.dataset.language;
         changeLanguage(abbreviationLanguage);
         localStorage.setItem("language", abbreviationLanguage)
     });

@@ -1,0 +1,297 @@
+/* Variables para los temas */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --tooltip-bg: rgba(0, 0, 0, 0.8);
+    --hover-color: #0366d6;
+    --map-filter: none;
+    --toast-bg: rgba(0, 0, 0, 0.8);
+    --toast-text: #ffffff;
+    --player-offline: #ff4444;
+    --player-online: #00C851;
+    --player-playing: #0099CC;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-bg: rgba(40, 40, 40, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --tooltip-bg: rgba(60, 60, 60, 0.9);
+    --hover-color: #58a6ff;
+    --map-filter: brightness(0.7) contrast(1.2) saturate(0.8);
+    --toast-bg: rgba(60, 60, 60, 0.9);
+    --toast-text: #ffffff;
+}
+
+/* Estilos base */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Contenedor del mapa */
+.map-container {
+    position: relative;
+    width: 95vw;
+    height: 95vh;
+    margin: auto;
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.map-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: var(--map-filter);
+    transition: all 0.3s ease;
+}
+
+/* Modo pantalla completa */
+.map-container.fullscreen {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* Botón de pantalla completa */
+.fullscreen-toggle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.fullscreen-toggle:hover {
+    transform: scale(1.1);
+    background: var(--hover-color);
+    color: white;
+}
+
+/* Contenedor de players */
+#players-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Estaciones/Reproductores */
+.player-position {
+    position: absolute;
+    cursor: default;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.player-circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.station-name-circle {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10px;
+    color: var(--text-color);
+    text-align: center;
+    font-weight: 800;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Tarjeta de información */
+.info-card {
+    position: absolute;
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    width: min(200px, 20vw);
+    transition: all 0.3s ease;
+    transform-origin: top left;
+    left: var(--info-card-left, 0); /* Añadir esta línea */
+    top: var(--info-card-top, 0); /* Añadir esta línea */
+}
+
+.card-content {
+    position: relative;
+    width: 100%;
+}
+
+/* Controles */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.theme-toggle button,
+.edit-toggle button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 3px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.theme-toggle button:hover,
+.edit-toggle button:hover {
+    opacity: 1;
+    color: var(--hover-color);
+}
+
+.edit-toggle button.active {
+    color: var(--player-playing);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Contenido de la tarjeta */
+.station-logo {
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    height: auto;
+}
+
+.station-name {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 14px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Estadísticas */
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 5px 0;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--text-color);
+    font-size: 12px;
+}
+
+.stat-item span {
+    font-weight: 700;
+}
+
+/* Modo edición */
+.edit-mode .player-position,
+.edit-mode .info-card {
+    cursor: move !important;
+}
+
+.edit-mode .player-position {
+    pointer-events: all !important;
+}
+
+.dragging {
+    opacity: 0.8;
+    z-index: 1001;
+}
+
+/* Estados del reproductor */
+.player-offline { background-color: var(--player-offline); }
+.player-online { background-color: var(--player-online); }
+.player-playing { background-color: var(--player-playing); }
+
+/* GitHub link */
+.github-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: var(--text-color);
+    font-size: 12px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.github-link:hover {
+    color: var(--hover-color);
+}
+
+.github-link i {
+    font-size: 14px;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+    .map-container {
+        width: 100vw;
+        height: 100vh;
+        padding: 10px;
+    }
+
+    .info-card {
+        width: min(180px, 30vw);
+        padding: 6px;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .info-card {
+        width: min(220px, 15vw);
+        padding: 10px;
+    }
+
+    .station-logo {
+        width: 100px;
+    }
+}

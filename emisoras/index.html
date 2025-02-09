@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Policía Nacional</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="map-container">
+        <img src="img/mapa-colombia.png" alt="Mapa de Colombia">
+        
+        <!-- Contenedor de reproductores -->
+        <div id="players-container">
+            <!-- Los reproductores se generan dinámicamente -->
+        </div>
+
+        <!-- Tarjeta de información -->
+        <div class="info-card" id="draggable-card">
+            <div class="card-content">
+                <div class="controls-container">
+                    <div class="left-controls">
+                        <div class="theme-toggle">
+                            <button id="theme-switch" title="Cambiar tema">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="right-controls">
+                        <div class="edit-toggle">
+                            <button id="edit-mode" title="Modo edición">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <img src="https://www.policia.gov.co/sites/default/files/2025-02/radio-policia-bogota.png" alt="Logo Radio" class="station-logo" id="station-logo">
+                <div class="station-name" id="station-name"></div>
+                <div class="stats">
+                    <div class="stat-item">
+
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span>Emisoras: </span>
+                        <span id="total-stations">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-signal"></i>
+                        <span>Sources: </span>
+                        <span id="total-sources">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>Oyentes: </span>
+                        <span id="total-listeners">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-music"></i>
+                        <span>Emisora: </span>
+                        <span id="current-station">-</span>
+                    </div>
+                </div>
+                <a href="https://github.com/digiraldo" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i>
+                    <span>Desarrollador</span>
+                </a>
+            </div>
+        </div>
+        <button class="fullscreen-toggle" id="fullscreen-toggle" title="Pantalla completa">
+            <i class="fas fa-expand"></i>
+        </button>
+    </div>
+
+    <script src="js/stations.js"></script>
+    <script src="js/player.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const player = new RadioPlayer();
+        });
+    </script>
+</body>
+</html>

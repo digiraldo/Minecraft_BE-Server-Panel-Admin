@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reproductores Radio Policía Nacional</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Montserrat:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Variables para los temas */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --tooltip-bg: rgba(0, 0, 0, 0.8);
+    --hover-color: #0366d6;
+    --map-filter: none;
+    --toast-bg: rgba(0, 0, 0, 0.8);
+    --toast-text: #ffffff;
+    --player-offline: #ff4444;
+    --player-online: #00C851;
+    --player-playing: #0099CC;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-bg: rgba(40, 40, 40, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --tooltip-bg: rgba(60, 60, 60, 0.9);
+    --hover-color: #58a6ff;
+    --map-filter: brightness(0.7) contrast(1.2) saturate(0.8);
+    --toast-bg: rgba(60, 60, 60, 0.9);
+    --toast-text: #ffffff;
+}
+
+/* Estilos base para el cuerpo de la página */
+/* Estilos base */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* UBICACION DE LOS REPRODUCTORES EN EL MAPA */
+/* Ajuste para el contenedor del mapa */
+/* Contenedor del mapa */
+.map-container {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.map-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    filter: var(--map-filter);
+    transition: filter 0.5s ease; /* Transición suave para el cambio de filtro */
+}
+
+/* Contenedor de players */
+#players-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite que los clics pasen a través del contenedor */
+}
+
+/* Asegurar que la tarjeta tenga el espacio necesario */
+/* Contenedor principal de la tarjeta */
+/* Estilos de la tarjeta de información */
+.info-card {
+    position: absolute;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    width: 250px;
+    transition: all 0.3s ease;
+}
+
+/* Ajuste del contenido principal para dar espacio a los botones */
+.card-content {
+    position: relative;
+    width: 100%;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor de los controles */
+/* Controles de la tarjeta */
+.controls-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.left-controls,
+.right-controls {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilos comunes para los botones */
+/* Botones de control */
+.theme-toggle button,
+.edit-toggle button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.theme-toggle button:hover,
+.edit-toggle button:hover {
+    opacity: 1;
+    color: var(--hover-color);
+}
+
+.edit-toggle button.active {
+    color: var(--player-playing);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Resto del contenido centrado */
+/* Elementos de la tarjeta */
+.station-logo {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    height: auto;
+}
+
+.station-name {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 16px;
+    margin: 8px 0;
+    text-align: center;
+}
+
+/* Ajustes para el contenido debajo de los botones */
+.station-name,
+.stats {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Ajuste del espacio entre elementos */
+/* Estadísticas */
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center; /* Centrar todo el contenido de stats */
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar elementos horizontalmente */
+    gap: 6px;
+    color: var(--text-color);
+    font-size: 13px;
+}
+
+.stat-item span {
+    font-weight: 700;
+}
+
+.stat-item i {
+    color: var(--player-playing);
+    font-size: 14px;
+}
+
+/* Clases de posición para cada ciudad */
+/* Ajustamos el contenedor del player para incluir el nombre */
+/* Estilos del reproductor
+.player-position {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    pointer-events: none;
+} */
+
+/* Estilos para los reproductores */
+.player-position {
+    position: absolute;
+    pointer-events: auto;
+    cursor: default;
+    z-index: 100;
+}
+
+.player-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.player-circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.player-info {
+    text-align: center;
+    color: white;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.listeners-count {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+/* Estados del reproductor */
+.player-offline {
+    background-color: var(--player-offline);
+}
+
+.player-online {
+    background-color: var(--player-online);
+}
+
+.player-playing {
+    background-color: var(--player-playing);
+}
+
+/* Controles del reproductor */
+.player-controls {
+    display: none;
+    position: absolute;
+    color: white;
+    font-size: 2em;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Opcional: si quieres hacer los iconos aún más pequeños */
+.player-controls i {
+    font-size: 14px;  /* Tamaño específico para los iconos */
+}
+
+/* Tooltip */
+.station-tooltip {
+    display: none;
+    position: absolute;
+    background: var(--tooltip-bg);
+    color: var(--toast-text);
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 4;
+    pointer-events: none;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.station-tooltip strong {
+    font-weight: 500;
+}
+
+/* Tooltip que aparece arriba */
+.tooltip-top {
+    bottom: 110%;
+}
+
+/* Flecha para tooltip arriba */
+.tooltip-top::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--tooltip-bg) transparent transparent transparent;
+}
+
+/* Tooltip que aparece abajo */
+.tooltip-bottom {
+    top: 110%;
+}
+
+/* Flecha para tooltip abajo - solo en la parte superior */
+.tooltip-bottom::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--tooltip-bg) transparent;
+}
+
+/* Eliminamos explícitamente la flecha inferior para tooltip-bottom */
+.tooltip-bottom::after {
+    display: none;
+}
+
+/* Añadimos una pequeña flecha al tooltip */
+.station-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modo edición */
+/* Modo edición */
+.edit-mode .player-position {
+    cursor: move !important;
+    pointer-events: auto !important;
+}
+.edit-mode .info-card {
+    cursor: move !important;
+}
+
+/* Indicador visual para elementos arrastrables en modo edición */
+.edit-mode .player-position::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px dashed var(--player-playing);
+    border-radius: 50%;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.edit-mode .player-circle::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px dashed var(--player-playing);
+    border-radius: 50%;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.dragging {
+    opacity: 0.8;
+    z-index: 1000;
+}
+
+/* Clases de utilidad */
+.hidden {
+    display: none;
+}
+
+/* Estilos para elementos arrastrables */
+.draggable {
+    cursor: move !important;
+}
+
+/* Aseguramos que los controles solo aparezcan al hacer hover en el círculo */
+/* Interacciones */
+.player-circle:hover .player-controls {
+    display: flex;
+}
+
+/* Aseguramos que el hover funcione correctamente */
+.player-position:hover .station-tooltip {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+    .info-card {
+        transform: scale(0.9);
+    }
+}
+
+/* Asegurar que las transiciones sean suaves */
+/* Transiciones globales */
+* {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease,
+                filter 0.5s ease;
+}
+
+
+
+
+
+.player-info {
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+/* Mostrar controles al hacer hover solo si está online */
+/* Ajustar los selectores de hover para trabajar con la nueva estructura */
+.player-position:hover .player-circle.player-online .player-controls,
+.player-position:hover .player-circle.player-playing .player-controls {
+    display: flex;
+}
+
+/* Ocultar el número de oyentes al hacer hover si está online */
+.player-position:hover .player-circle.player-online .player-info,
+.player-position:hover .player-circle.player-playing .player-info {
+    display: none;
+}
+
+/* No mostrar controles en círculos rojos (offline) */
+.player-position:hover .player-circle.player-offline .player-controls {
+    display: none;
+}
+
+/* Asegurar que el número de oyentes siempre sea visible en círculos offline */
+.player-position:hover .player-circle.player-offline .player-info {
+    display: flex;
+}
+
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: var(--toast-bg);
+    color: var(--toast-text);
+    padding: 12px 24px;
+    border-radius: 4px;
+    margin: 8px;
+    font-family: 'Work Sans', sans-serif;
+    animation: slideIn 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Estilo para el nombre de la ciudad */
+.station-name-circle {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10px;
+    color: var(--text-color);
+    text-align: center;
+    font-weight: 800;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* GitHub link */
+.github-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.github-link:hover {
+    color: var(--hover-color);
+}
+
+.github-link i {
+    font-size: 16px;
+}
+
+#total-sources,
+#total-listeners,
+#total-stations {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* Developer info */
+.developer {
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* Estilo para la emisora actual */
+#current-station {
+    font-weight: 500;
+    color: var(--player-playing);  /* Color para destacar la emisora actual */
+}
+
+/* Ajuste del icono de música */
+.stat-item i.fa-music {
+    color: #0099CC;
+}
+
+
+.theme-toggle button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle button:hover {
+    color: var(--hover-color);
+}
+
+/* Ajustes adicionales para el modo oscuro */
+[data-theme="dark"] .info-card {
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .station-tooltip {
+    background: var(--tooltip-bg);
+    color: var(--toast-text);
+}
+/* Ajustar el filtro del mapa en modo oscuro */
+[data-theme="dark"] .map-container img {
+    filter: brightness(0.4) contrast(1.2) saturate(0.6);
+}
+
+/* Estilos para los controles */
+.controls-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 1001;
+}
+
+/* Estilos para los controles */
+.left-controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+}
+
+.right-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+}
+
+
+
+
+
+/* ========================== Posiciones específicas para cada ciudad ========================== */
+/* ========================== Posiciones específicas para cada ciudad ========================== */
+[data-city="inhouse"] {
+    top: 50%;
+    left: 30%;
+}
+
+[data-city="medellin"] {
+    top: 35%;
+    left: 42%;
+}
+
+[data-city="cali"] {
+    top: 52%;
+    left: 38%;
+}
+    </style>
+</head>
+<body>
+<!--     <div id="login-section" class="hidden">
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Usuario">
+            <input type="password" id="password" placeholder="Contraseña">
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <div id="players-container"></div>
+    <div id="admin-panel" class="hidden">
+    </div> -->
+    <div class="info-card" id="draggable-card">
+        <div class="card-content">
+            <!-- Separamos los controles en dos grupos -->
+            <div class="controls-container">
+                <div class="left-controls">
+                    <div class="theme-toggle">
+                        <button id="theme-switch" title="Cambiar tema">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="right-controls">
+                    <div class="edit-toggle">
+                        <button id="edit-mode" title="Modo edición">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <img src="https://www.policia.gov.co/sites/default/files/2025-02/radio-policia-bogota.png" alt="Logo Radio" class="station-logo" id="station-logo">
+            <h2 class="station-name" id="station-name"></h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <span id="total-sources">0</span> emisoras de <span id="total-stations">38</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-headphones"></i>
+                    <span id="total-listeners">0</span> oyentes
+                </div>
+            </div>
+            <div class="developer">
+                <a href="" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="player-position" data-city="ciudad">
+        <div class="player-wrapper">
+            <div class="player-circle">
+                <!-- contenido del reproductor -->
+            </div>
+            <div class="station-name-circle">Nombre Ciudad</div>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <img src="img/mapa-colombia.png" alt="Mapa de Colombia">
+        <div id="players-container"></div>
+    </div>
+
+    <script>
+        class RadioPlayer {
+    constructor() {
+        this.stations = null;
+        this.players = new Map();
+        this.activeToasts = new Set();
+        this.currentlyPlaying = null;
+        this.totalSources = 0;
+        this.totalListeners = 0;
+        this.editMode = false;
+        this.initEditMode();
+        this.loadStations();
+        this.initToastContainer();
+        // Añadir elemento para mostrar la emisora actual
+        this.addCurrentStationElement();
+        this.initThemeToggle();
+    }
+
+    async loadStations() {
+        try {
+            const response = await fetch('json/stations.json');
+            this.stations = await response.json();
+            this.initPlayers();
+            this.startStatusCheck();
+            this.updateStationInfo();
+            this.updateTotalStations(); // Añadimos esta línea
+        } catch (error) {
+            console.error('Error cargando stations.json:', error);
+        }
+    }
+
+    /* async checkStationStatus(serverUrl, mountpoint) {
+        try {
+            const response = await fetch(`${serverUrl}/status-json.xsl`);
+            const data = await response.json();
+            const source = data.icestats.source.find(s => s.server_url === mountpoint);
+            return source ? {
+                online: true,
+                listeners: source.listeners
+            } : { online: false, listeners: 0 };
+        } catch {
+            return { online: false, listeners: 0 };
+        }
+    } */
+
+        async checkStationStatus(serverUrl, mountpoint) {
+            try {
+                const response = await fetch(`${serverUrl}/status-json.xsl`);
+                const data = await response.json();
+                
+                // Verificamos si source es un array
+                const sources = Array.isArray(data.icestats.source) 
+                    ? data.icestats.source 
+                    : [data.icestats.source];
+        
+                // Actualizamos el total de sources
+                this.totalSources = sources.length;
+                
+                // Calculamos el total de oyentes
+                this.totalListeners = sources.reduce((total, source) => 
+                    total + (source.listeners || 0), 0);
+                
+                // Actualizamos la información en la tarjeta
+                this.updateTotals();
+        
+                // Buscamos la fuente específica
+                const source = sources.find(s => 
+                    s.server_url === mountpoint || 
+                    s.listenurl.includes(mountpoint) ||
+                    s.mount === mountpoint ||
+                    s.mount === `/${mountpoint}`
+                );
+        
+                return source ? {
+                    online: true,
+                    listeners: source.listeners || 0
+                } : { 
+                    online: false, 
+                    listeners: 0 
+                };
+            } catch (error) {
+                console.error('Error checking status:', error);
+                return { online: false, listeners: 0 };
+            }
+        }
+
+        updateTotals() {
+            const sourcesElement = document.getElementById('total-sources');
+            const listenersElement = document.getElementById('total-listeners');
+            
+                if (sourcesElement) {
+                    sourcesElement.textContent = this.totalSources;
+                }
+                
+                if (listenersElement) {
+                listenersElement.textContent = this.totalListeners;
+            }
+        }
+
+
+        createPlayerElement(ciudad) {
+            const playerWrapper = document.createElement('div');
+            playerWrapper.className = 'player-position';
+            playerWrapper.setAttribute('data-city', ciudad.serverUrl);
+        
+            const playerDiv = document.createElement('div');
+            playerDiv.className = 'player-circle player-offline';
+            playerDiv.innerHTML = `
+                <div class="player-info">
+                    <div class="listeners-count">0</div>
+                </div>
+                <div class="player-controls">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="station-tooltip">
+                    <strong>${ciudad.name}</strong>
+                    <br>
+                    ${ciudad.frecuencia}
+                </div>
+            `;
+        
+            // Crear el elemento para el nombre de la ciudad
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'station-name-circle';
+            nameDiv.textContent = ciudad.name;
+        
+            // Añadir tanto el círculo como el nombre al wrapper
+            playerWrapper.appendChild(playerDiv);
+            playerWrapper.appendChild(nameDiv);
+        
+            // Manejar el hover solo en el círculo
+            playerDiv.addEventListener('mouseenter', (e) => {
+                const tooltip = playerDiv.querySelector('.station-tooltip');
+                const rect = playerDiv.getBoundingClientRect();
+                const spaceAbove = rect.top;
+                
+                tooltip.classList.remove('tooltip-top', 'tooltip-bottom');
+                
+                if (spaceAbove < 100) {
+                    tooltip.classList.add('tooltip-bottom');
+                } else {
+                    tooltip.classList.add('tooltip-top');
+                }
+                
+                tooltip.style.display = 'block';
+            });
+        
+            playerDiv.addEventListener('mouseleave', (e) => {
+                const tooltip = playerDiv.querySelector('.station-tooltip');
+                tooltip.style.display = 'none';
+            });
+        
+            // El click event solo en el círculo
+            playerDiv.addEventListener('click', () => this.togglePlay(ciudad));
+        
+            return playerWrapper;
+        }
+
+        initPlayers() {
+            const container = document.getElementById('players-container');
+            this.stations.reproductor.ciudades.forEach(ciudad => {
+                const playerWrapper = this.createPlayerElement(ciudad);
+                const playerDiv = playerWrapper.querySelector('.player-circle');
+                const audio = new Audio();
+                
+                this.players.set(ciudad.serverUrl, {
+                    element: playerDiv,
+                    audio: audio,
+                    playing: false
+                });
+        
+                // Eliminamos este event listener redundante
+                // playerWrapper.addEventListener('click', () => this.togglePlay(ciudad));
+                container.appendChild(playerWrapper);
+            });
+        }
+
+    initToastContainer() {
+        const container = document.createElement('div');
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    showToast(message) {
+        const container = document.querySelector('.toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = message;
+
+        // Añadir el toast al conjunto de toasts activos
+        this.activeToasts.add(toast);
+
+        container.appendChild(toast);
+
+        // Función para eliminar el toast
+        const removeToast = () => {
+            if (container.contains(toast)) {
+                container.removeChild(toast);
+                this.activeToasts.delete(toast);
+            }
+        };
+
+        // Eliminar toasts anteriores del mismo mensaje
+        this.activeToasts.forEach(activeToast => {
+            if (activeToast.textContent === message && activeToast !== toast) {
+                removeToast(activeToast);
+            }
+        });
+
+        // Configurar el temporizador para eliminar el toast
+        setTimeout(() => {
+            toast.style.animation = 'fadeOut 0.3s ease-in-out forwards';
+            toast.addEventListener('animationend', (e) => {
+                if (e.animationName === 'fadeOut') {
+                    removeToast();
+                }
+            });
+        }, 5000);
+    }
+
+    addCurrentStationElement() {
+        const statsDiv = document.querySelector('.stats');
+        const currentStationDiv = document.createElement('div');
+        currentStationDiv.className = 'stat-item';
+        currentStationDiv.innerHTML = `
+            <i class="fas fa-music"></i>
+            <span id="current-station">Sin reproducción</span>
+        `;
+        statsDiv.appendChild(currentStationDiv);
+    }
+
+    togglePlay(ciudad) {
+        const player = this.players.get(ciudad.serverUrl);
+        
+        this.checkStationStatus(this.stations.reproductor.serverUrl, ciudad.serverUrl)
+            .then(status => {
+                if (!status.online) {
+                    this.showToast(`${ciudad.name} ${ciudad.frecuencia} no está disponible`);
+                    return;
+                }
+
+                // Si hay otra emisora sonando, la detenemos
+                if (this.currentlyPlaying && this.currentlyPlaying !== player) {
+                    const currentPlayer = this.currentlyPlaying;
+                    currentPlayer.audio.pause();
+                    currentPlayer.playing = false;
+                    currentPlayer.element.className = 'player-circle player-online';
+                    currentPlayer.element.querySelector('.player-controls i').className = 'fas fa-play';
+                }
+
+                // Reproducir o pausar la emisora seleccionada
+                if (!player.playing) {
+                    player.audio.src = `${this.stations.reproductor.serverUrl}/${ciudad.serverUrl}`;
+                    player.audio.play();
+                    player.playing = true;
+                    player.element.className = 'player-circle player-playing';
+                    player.element.querySelector('.player-controls i').className = 'fas fa-pause';
+                    this.currentlyPlaying = player;
+                    // Actualizar el nombre de la emisora actual
+                    document.getElementById('current-station').textContent = 
+                        `${ciudad.name} ${ciudad.frecuencia}`;
+                } else {
+                    player.audio.pause();
+                    player.playing = false;
+                    player.element.className = 'player-circle player-online';
+                    player.element.querySelector('.player-controls i').className = 'fas fa-play';
+                    this.currentlyPlaying = null;
+                    // Resetear el nombre de la emisora actual
+                    document.getElementById('current-station').textContent = 'Sin reproducción';
+                }
+            });
+    }
+
+    /* togglePlay(ciudad) {
+        const player = this.players.get(ciudad.serverUrl);
+        if (!player.playing) {
+            player.audio.src = `${this.stations.reproductor.serverUrl}/${ciudad.serverUrl}`;
+            player.audio.play();
+            player.playing = true;
+            player.element.className = 'player-circle player-playing';
+            player.element.querySelector('.player-controls i').className = 'fas fa-pause';
+        } else {
+            player.audio.pause();
+            player.playing = false;
+            player.element.className = 'player-circle player-online';
+            player.element.querySelector('.player-controls i').className = 'fas fa-play';
+        }
+    } */
+
+    updateStationInfo() {
+        // Actualizar logo
+        const logoElement = document.getElementById('station-logo');
+        if (logoElement && this.stations.reproductor.url_logo) {
+            logoElement.src = this.stations.reproductor.url_logo;
+        }
+
+        // Actualizar nombre de la estación
+        const nameElement = document.getElementById('station-name');
+        if (nameElement && this.stations.reproductor.estacion) {
+            nameElement.textContent = this.stations.reproductor.estacion;
+        }
+
+        // Actualizar enlace de GitHub si es necesario
+        const githubLink = document.querySelector('.github-link');
+        if (githubLink && this.stations.reproductor.desarrollador) {
+            githubLink.href = `https://github.com/${this.stations.reproductor.desarrollador}`;
+        }
+    }
+
+    updateTotalStations() {
+        const totalStationsElement = document.getElementById('total-stations');
+        if (totalStationsElement && this.stations.reproductor.total_estaciones) {
+            totalStationsElement.textContent = this.stations.reproductor.total_estaciones;
+        }
+    }
+
+    startStatusCheck() {
+        setInterval(() => {
+            // Verificamos el estado del servidor principal primero
+            fetch(`${this.stations.reproductor.serverUrl}/status-json.xsl`)
+                .then(response => response.json())
+                .then(data => {
+                    const sources = Array.isArray(data.icestats.source) 
+                        ? data.icestats.source 
+                        : [data.icestats.source];
+                    
+                    this.totalSources = sources.length;
+                    this.totalListeners = sources.reduce((total, source) => 
+                        total + (source.listeners || 0), 0);
+                    
+                    this.updateTotals();
+                })
+                .catch(error => {
+                    console.error('Error checking server status:', error);
+                    this.totalSources = 0;
+                    this.totalListeners = 0;
+                    this.updateTotals();
+                });
+
+            // Continuamos con la verificación individual de cada emisora
+            this.stations.reproductor.ciudades.forEach(async ciudad => {
+                const status = await this.checkStationStatus(
+                    this.stations.reproductor.serverUrl,
+                    ciudad.serverUrl
+                );
+                const player = this.players.get(ciudad.serverUrl);
+                if (!player.playing) {
+                    player.element.className = `player-circle ${status.online ? 'player-online' : 'player-offline'}`;
+                }
+                player.element.querySelector('.listeners-count').textContent = status.listeners;
+            });
+        }, 5000);
+    }
+
+    initThemeToggle() {
+        const themeButton = document.getElementById('theme-switch');
+        const icon = themeButton.querySelector('i');
+        
+        // Cargar tema guardado
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        this.updateThemeIcon(icon, savedTheme);
+
+        themeButton.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            this.updateThemeIcon(icon, newTheme);
+        });
+    }
+
+    updateThemeIcon(icon, theme) {
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+
+    initEditMode() {
+        const editButton = document.getElementById('edit-mode');
+        const mapContainer = document.querySelector('.map-container');
+        const infoCard = document.getElementById('draggable-card');
+        const players = document.querySelectorAll('.player-position');
+
+        editButton.addEventListener('click', () => {
+            this.editMode = !this.editMode;
+            editButton.classList.toggle('active');
+            mapContainer.classList.toggle('edit-mode');
+            
+            if (this.editMode) {
+                this.enableDragging(infoCard);
+                players.forEach(player => {
+                    this.enableDragging(player);
+                });
+            } else {
+                this.disableDragging(infoCard);
+                players.forEach(player => {
+                    this.disableDragging(player);
+                });
+            }
+        });
+    }
+
+    enableDragging(element) {
+        let offsetX, offsetY, isDragging = false;
+    
+        const onMouseDown = (e) => {
+            if (!this.editMode) return;
+            
+            // Evitar que el evento se propague al mapa
+            e.stopPropagation();
+            
+            isDragging = true;
+            element.classList.add('dragging');
+    
+            const rect = element.getBoundingClientRect();
+            const mapRect = document.querySelector('.map-container').getBoundingClientRect();
+            
+            // Calcular offset relativo al mapa
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+    
+            e.preventDefault();
+        };
+    
+        const onMouseMove = (e) => {
+            if (!isDragging) return;
+    
+            e.preventDefault();
+            e.stopPropagation();
+    
+            const mapContainer = document.querySelector('.map-container');
+            const mapRect = mapContainer.getBoundingClientRect();
+            
+            let newX = e.clientX - mapRect.left - offsetX;
+            let newY = e.clientY - mapRect.top - offsetY;
+    
+            // Limitar al área del mapa
+            newX = Math.max(0, Math.min(newX, mapRect.width - element.offsetWidth));
+            newY = Math.max(0, Math.min(newY, mapRect.height - element.offsetHeight));
+    
+            element.style.left = `${newX}px`;
+            element.style.top = `${newY}px`;
+        };
+    
+        const onMouseUp = () => {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            element.classList.remove('dragging');
+            this.savePositions();
+        };
+    
+        element.addEventListener('mousedown', onMouseDown);
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+    
+        element.dragListeners = { onMouseDown, onMouseMove, onMouseUp };
+    }
+
+    disableDragging(element) {
+        if (element.dragListeners) {
+            element.removeEventListener('mousedown', element.dragListeners.onMouseDown);
+            document.removeEventListener('mousemove', element.dragListeners.onMouseMove);
+            document.removeEventListener('mouseup', element.dragListeners.onMouseUp);
+        }
+    }
+
+    initDraggable(element) {
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        const dragStart = (e) => {
+            if (!this.editMode) return;
+
+            const mapBounds = document.querySelector('.map-container').getBoundingClientRect();
+            
+            if (e.type === "touchstart") {
+                initialX = e.touches[0].clientX - xOffset;
+                initialY = e.touches[0].clientY - yOffset;
+            } else {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+            }
+
+            if (e.target === element || element.contains(e.target)) {
+                isDragging = true;
+                element.classList.add('dragging');
+            }
+        };
+
+        const dragEnd = () => {
+            if (!isDragging) return;
+            
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+            element.classList.remove('dragging');
+
+            // Guardar posiciones
+            this.savePositions();
+        };
+
+        const drag = (e) => {
+            if (!isDragging || !this.editMode) return;
+
+            e.preventDefault();
+
+            const mapBounds = document.querySelector('.map-container').getBoundingClientRect();
+            const elementBounds = element.getBoundingClientRect();
+
+            if (e.type === "touchmove") {
+                currentX = e.touches[0].clientX - initialX;
+                currentY = e.touches[0].clientY - initialY;
+            } else {
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+            }
+
+            // Limitar el movimiento dentro del mapa
+            const maxX = mapBounds.width - elementBounds.width;
+            const maxY = mapBounds.height - elementBounds.height;
+
+            xOffset = Math.min(Math.max(currentX, 0), maxX);
+            yOffset = Math.min(Math.max(currentY, 0), maxY);
+
+            setTranslate(xOffset, yOffset, element);
+        };
+
+        const setTranslate = (xPos, yPos, el) => {
+            el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+        };
+
+        // Eventos de mouse
+        element.addEventListener('mousedown', dragStart);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', dragEnd);
+
+        // Eventos táctiles
+        element.addEventListener('touchstart', dragStart);
+        document.addEventListener('touchmove', drag);
+        document.addEventListener('touchend', dragEnd);
+    }
+
+    savePositions() {
+        const positions = {
+            infoCard: {
+                left: document.getElementById('draggable-card').style.left,
+                top: document.getElementById('draggable-card').style.top
+            },
+            players: {}
+        };
+
+        document.querySelectorAll('.player-position').forEach(player => {
+            positions.players[player.dataset.city] = {
+                left: player.style.left,
+                top: player.style.top
+            };
+        });
+
+        localStorage.setItem('mapPositions', JSON.stringify(positions));
+    }
+
+    toggleDraggable(enabled) {
+        const elements = [
+            document.querySelector('.info-card'),
+            ...document.querySelectorAll('.player-position')
+        ];
+
+        elements.forEach(element => {
+            if (enabled) {
+                element.classList.add('draggable');
+            } else {
+                element.classList.remove('draggable');
+            }
+        });
+    }
+
+    getElementPositions() {
+        const positions = {
+            infoCard: {
+                x: parseFloat(document.querySelector('.info-card').style.transform.split('(')[1]),
+                y: parseFloat(document.querySelector('.info-card').style.transform.split(',')[1])
+            },
+            players: {}
+        };
+
+        document.querySelectorAll('.player-position').forEach(player => {
+            const id = player.getAttribute('data-city');
+            positions.players[id] = {
+                x: parseFloat(player.style.transform.split('(')[1]),
+                y: parseFloat(player.style.transform.split(',')[1])
+            };
+        });
+
+        return positions;
+    }
+
+    // Cargar posiciones guardadas al iniciar
+    // Método para cargar las posiciones guardadas
+    loadSavedPositions() {
+        const savedPositions = localStorage.getItem('mapPositions');
+        if (savedPositions) {
+            const positions = JSON.parse(savedPositions);
+            
+            const infoCard = document.querySelector('.info-card');
+            if (positions.infoCard) {
+                infoCard.style.transform = positions.infoCard;
+            }
+
+            Object.entries(positions.players).forEach(([city, transform]) => {
+                const player = document.querySelector(`[data-city="${city}"]`);
+                if (player) {
+                    player.style.transform = transform;
+                }
+            });
+        }
+    }
+
+}
+
+// Inicializar la aplicación
+document.addEventListener('DOMContentLoaded', () => {
+    new RadioPlayer();
+});
+    </script>
+
+    <!-- <script src="player.js"></script> -->
+    <!-- <script src="admin.js"></script> -->
+</body>
+</html>

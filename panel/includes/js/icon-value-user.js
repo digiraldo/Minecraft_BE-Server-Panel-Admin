@@ -1,18 +1,18 @@
-const usersImgElements = document.getElementById("imgUser");
+let usersImgElements = document.getElementById("imgUser");
 //console.log(usersImgElements);
-const userIconActualBtn = document.getElementById("icon-default-img");
+let userIconActualBtn = document.getElementById("icon-default-img");
 //console.log(userIconActualBtn);
 
-const userIconButton = document.querySelectorAll("iconUser, [value]");
+let userIconButton = document.querySelectorAll("iconUser, [value]");
 //console.log(userIconButton);
 
-const changeImgIconUser = async iconImgUser => {
+let changeImgIconUser = async iconImgUser => {
     userIconActualBtn.getElementsByTagName('img')[0].src = `panel/includes/img/perfil/${iconImgUser}.png`
 };
 
 
 usersImgElements.addEventListener('change', (event) => {
-    const selectIconUser =  event.target.value;
+    let selectIconUser =  event.target.value;
     changeImgIconUser(selectIconUser);
     //console.log(selectIconUser)
     //localStorage.setItem("iconuser", selectIconUser)
